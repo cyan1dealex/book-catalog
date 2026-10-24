@@ -1,0 +1,23 @@
+body {
+	background: var(--color-bg);
+	color: var(--color-text);
+	font-family: var(--font-main);
+	font-size: 14px;
+	line-height: 1.5;
+}
+
+button {
+	color: inherit;
+}
+
+input,
+select {
+	color: var(--color-text);
+}
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+	outline: 2px solid var(--color-primary);
+	outline-offset: 2px;
+}

@@ -1,0 +1,11 @@
+@import './fonts.css';
+@import './variables.css';
+@import './normalize.css';
+@import './utils.css';
+@import './global.css';
+
+@import './blocks/header.css';
+@import './blocks/catalog.css';
+@import './blocks/book-card.css';
+@import './blocks/footer.css';
+@import './blocks/favorites.css';

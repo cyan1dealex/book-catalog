@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Book Catalog</title>
+		<link rel="stylesheet" href="/src/styles/styles.css" />
+		<script type="module" src="/src/scripts/main.js"></script>
+	</head>
+
+	<body>
+		<header class="header">
+			<div class="container header__inner">
+				<a class="logo" href="/">Book Catalog</a>
+
+				<div class="header__actions">
+					<button
+						class="favorites-toggle"
+						type="button"
+						aria-label="Open favorites"
+					>
+						♡
+					</button>
+
+					<button class="theme-toggle" type="button">☼</button>
+				</div>
+			</div>
+		</header>
+
+		<main class="container">
+			<section class="catalog">
+				<div class="catalog__header">
+					<h1 class="catalog__title">Find your next favorite book!</h1>
+
+					<form class="search">
+						<input
+							class="search__input"
+							type="search"
+							placeholder="Search books..."
+						/>
+						<button class="search__button" type="submit">Search</button>
+					</form>
+				</div>
+
+				<div class="catalog__toolbar">
+					<div class="filters">
+						<button class="filter filter--active" type="button">
+							All books
+						</button>
+						<button class="filter" type="button">Favorites</button>
+					</div>
+
+					<select class="sort">
+						<option value="relevance">Relevance</option>
+						<option value="title">Title</option>
+						<option value="author">Author</option>
+					</select>
+				</div>
+
+				<div class="book-grid">
+					<article class="book-card">
+						<div class="book-card__cover book-card__cover--blue"></div>
+						<div class="book-card__body">
+							<h2 class="book-card__title">Book №1 | Title</h2>
+							<p class="book-card__author">Author</p>
+							<button class="book-card__favorite" type="button">♡</button>
+						</div>
+					</article>
+
+					<article class="book-card">
+						<div class="book-card__cover book-card__cover--green"></div>
+						<div class="book-card__body">
+							<h2 class="book-card__title">Book №2 | Title</h2>
+							<p class="book-card__author">Author</p>
+							<button class="book-card__favorite" type="button">♡</button>
+						</div>
+					</article>
+
+					<article class="book-card">
+						<div class="book-card__cover book-card__cover--orange"></div>
+						<div class="book-card__body">
+							<h2 class="book-card__title">Book №3 | Title</h2>
+							<p class="book-card__author">Author</p>
+							<button class="book-card__favorite" type="button">♡</button>
+						</div>
+					</article>
+
+					<article class="book-card">
+						<div class="book-card__cover book-card__cover--purple"></div>
+						<div class="book-card__body">
+							<h2 class="book-card__title">Book №4 | Title</h2>
+							<p class="book-card__author">Author</p>
+							<button class="book-card__favorite" type="button">♡</button>
+						</div>
+					</article>
+
+					<article class="book-card">
+						<div class="book-card__cover book-card__cover--pink"></div>
+						<div class="book-card__body">
+							<h2 class="book-card__title">Book №5 | Title</h2>
+							<p class="book-card__author">Author</p>
+							<button class="book-card__favorite" type="button">♡</button>
+						</div>
+					</article>
+
+					<article class="book-card">
+						<div class="book-card__cover book-card__cover--dark"></div>
+						<div class="book-card__body">
+							<h2 class="book-card__title">Book №6 | Title</h2>
+							<p class="book-card__author">Author</p>
+							<button class="book-card__favorite" type="button">♡</button>
+						</div>
+					</article>
+				</div>
+			</section>
+		</main>
+		<footer class="footer">
+			<div class="footer__inner container">
+				<p class="footer__text">Book Catalog | Made by Alex</p>
+			</div>
+		</footer>
+
+		<div class="overlay"></div>
+
+		<aside class="favorites-panel" aria-label="Favorites">
+			<div class="favorites-panel__header">
+				<h2 class="favorites-panel__title">Favorites</h2>
+
+				<button class="favorites-panel__close" type="button">&times;</button>
+			</div>
+
+			<div class="favorites-panel__content">
+				<p>Your favorite books will appear here.</p>
+			</div>
+		</aside>
+	</body>
+</html>
