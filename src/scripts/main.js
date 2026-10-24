@@ -1,17 +1,5 @@
-// console.log('book catalog app')
+import FavoritesPanel from './blocks/FavoritesPanel.js'
 
-const favoritesToggle = document.querySelector('.favorites-toggle')
-const favoritesClose = document.querySelector('.favorites-panel__close')
-const overlay = document.querySelector('.overlay')
+const favoritesPanel = new FavoritesPanel()
 
-function openFavorites() {
-	document.body.classList.add('favorites-open')
-}
-
-function closeFavorites() {
-	document.body.classList.remove('favorites-open')
-}
-
-favoritesToggle.addEventListener('click', openFavorites)
-favoritesClose.addEventListener('click', closeFavorites)
-overlay.addEventListener('click', closeFavorites)
+favoritesPanel.init()
