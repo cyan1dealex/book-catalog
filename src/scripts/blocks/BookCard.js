@@ -25,6 +25,10 @@ class BookCard {
 		author.classList.add('book-card__author')
 		author.textContent = this.book.author
 
+		const year = document.createElement('p')
+		year.classList.add('book-card__year')
+		year.textContent = this.book.year
+
 		const favoriteButton = document.createElement('button')
 		favoriteButton.classList.add('book-card__favorite')
 		favoriteButton.type = 'button'
@@ -32,7 +36,7 @@ class BookCard {
 		favoriteButton.setAttribute('aria-label', 'Add to favorites')
 
 		cover.append(coverImage)
-		body.append(title, author, favoriteButton)
+		body.append(title, author, year, favoriteButton)
 		article.append(cover, body)
 
 		return article

@@ -36,6 +36,10 @@
 	font-size: 10px;
 	color: var(--color-muted);
 }
+.book-card__year {
+	font-size: 10px;
+	color: var(--color-muted);
+}
 
 .book-card__favorite {
 	grid-column: 2;
