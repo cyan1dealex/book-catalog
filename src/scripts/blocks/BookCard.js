@@ -10,16 +10,20 @@ class BookCard {
 		const cover = document.createElement('div')
 		cover.classList.add('book-card__cover')
 
-		const coverImage = document.createElement('img')
-		coverImage.src = `https://covers.openlibrary.org/b/id/${this.book.coverId}-M.jpg`
-		coverImage.alt = `Cover of ${this.book.title}`
+		if (this.book.coverId) {
+			const coverImage = document.createElement('img')
+			coverImage.src = `https://covers.openlibrary.org/b/id/${this.book.coverId}-M.jpg`
+			coverImage.alt = `Cover of ${this.book.title}`
+
+			cover.append(coverImage)
+		}
 
 		const body = document.createElement('div')
 		body.classList.add('book-card__body')
 
 		const title = document.createElement('h3')
 		title.classList.add('book-card__title')
-		title.textContent = this.book.title
+		title.textContent = this.book.title ?? 'Untitled'
 
 		const author = document.createElement('p')
 		author.classList.add('book-card__author')
@@ -27,7 +31,7 @@ class BookCard {
 
 		const year = document.createElement('p')
 		year.classList.add('book-card__year')
-		year.textContent = this.book.year
+		year.textContent = this.book.year ?? 'Year unknown'
 
 		const favoriteButton = document.createElement('button')
 		favoriteButton.classList.add('book-card__favorite')
@@ -35,7 +39,6 @@ class BookCard {
 		favoriteButton.textContent = '♡'
 		favoriteButton.setAttribute('aria-label', 'Add to favorites')
 
-		cover.append(coverImage)
 		body.append(title, author, year, favoriteButton)
 		article.append(cover, body)
 

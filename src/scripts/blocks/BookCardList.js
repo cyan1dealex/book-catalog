@@ -6,13 +6,16 @@ class BookCardList {
 	}
 
 	render(books) {
-		this.container.innerHTML = ''
+		if (!this.container) {
+			console.error('BookCardList: container .book-grid was not found')
+			return
+		}
+
+		this.container.replaceChildren()
 
 		books.forEach(book => {
 			const bookCard = new BookCard(book)
-			const bookElement = bookCard.render()
-
-			this.container.append(bookElement)
+			this.container.append(bookCard.render())
 		})
 	}
 }
