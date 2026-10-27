@@ -28,3 +28,7 @@ select:focus-visible {
 	outline: 2px solid var(--color-primary);
 	outline-offset: 2px;
 }
+
+.favorites-panel .book-card--inactive {
+	opacity: 0.5;
+}

@@ -1,6 +1,10 @@
+import heartIcon from '../../assets/icons/heart.svg?raw'
+
 class BookCard {
-	constructor(book) {
+	constructor(book, favoritesService, onFavoriteChange) {
 		this.book = book
+		this.favoritesService = favoritesService
+		this.onFavoriteChange = onFavoriteChange
 	}
 
 	render() {
@@ -36,8 +40,38 @@ class BookCard {
 		const favoriteButton = document.createElement('button')
 		favoriteButton.classList.add('book-card__favorite')
 		favoriteButton.type = 'button'
-		favoriteButton.textContent = '♡'
-		favoriteButton.setAttribute('aria-label', 'Add to favorites')
+
+		favoriteButton.innerHTML = heartIcon
+
+		const favoriteIcon = favoriteButton.querySelector('svg')
+		favoriteIcon.classList.add('book-card__favorite-icon')
+
+		favoriteButton.append(favoriteIcon)
+
+		const updateFavoriteButton = () => {
+			const isFavorite = this.favoritesService.isFavorite(this.book.id)
+
+			favoriteButton.classList.toggle('book-card__favorite--active', isFavorite)
+
+			favoriteButton.setAttribute(
+				'aria-label',
+				isFavorite ? 'Remove from favorites' : 'Add to favorites',
+			)
+
+			article.classList.toggle('book-card--inactive', !isFavorite)
+		}
+
+		updateFavoriteButton()
+
+		document.addEventListener('favorites-changed', updateFavoriteButton)
+
+		favoriteButton.addEventListener('click', () => {
+			this.favoritesService.toggleFavorite(this.book)
+			updateFavoriteButton()
+
+			document.dispatchEvent(new Event('favorites-changed'))
+			this.onFavoriteChange?.()
+		})
 
 		body.append(title, author, year, favoriteButton)
 		article.append(cover, body)
