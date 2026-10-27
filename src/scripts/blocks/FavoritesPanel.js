@@ -39,8 +39,6 @@ class FavoritesPanel {
 		const bookCardList = new BookCardList(this.content, this.favoritesService)
 
 		bookCardList.render(favorites)
-
-		bookCardList.render(favorites)
 	}
 
 	open() {

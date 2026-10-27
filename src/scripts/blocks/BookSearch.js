@@ -1,12 +1,16 @@
+import debounce from '../utils/debounce.js'
+
 class BookSearch {
 	constructor(input, bookService, bookCardList) {
 		this.input = input
 		this.bookService = bookService
 		this.bookCardList = bookCardList
 		this.statusElement = document.querySelector('.book-status')
-
-		this.timeoutId = null
 		this.requestId = 0
+
+		this.debouncedSearch = debounce((query, requestId) => {
+			this.searchBooks(query, requestId)
+		}, 400)
 	}
 
 	init() {
@@ -66,7 +70,7 @@ class BookSearch {
 	}
 
 	handleInput() {
-		clearTimeout(this.timeoutId)
+		this.debouncedSearch.cancel()
 
 		const query = this.input.value.trim()
 		const requestId = ++this.requestId
@@ -83,10 +87,7 @@ class BookSearch {
 		}
 
 		this.showStatus('loading')
-
-		this.timeoutId = setTimeout(() => {
-			this.searchBooks(query, requestId)
-		}, 400)
+		this.debouncedSearch(query, requestId)
 	}
 
 	async searchBooks(query, requestId) {

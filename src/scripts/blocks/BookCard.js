@@ -20,6 +20,12 @@ class BookCard {
 			coverImage.alt = `Cover of ${this.book.title}`
 
 			cover.append(coverImage)
+		} else {
+			const placeholder = document.createElement('div')
+			placeholder.classList.add('book-card__cover-placeholder')
+			placeholder.textContent = 'No cover'
+
+			cover.append(placeholder)
 		}
 
 		const body = document.createElement('div')
