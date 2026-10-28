@@ -59,11 +59,6 @@ class BookCard {
 
 			favoriteButton.classList.toggle('book-card__favorite--active', isFavorite)
 
-			favoriteButton.setAttribute(
-				'aria-label',
-				isFavorite ? 'Remove from favorites' : 'Add to favorites',
-			)
-
 			article.classList.toggle('book-card--inactive', !isFavorite)
 		}
 

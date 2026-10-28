@@ -6,6 +6,8 @@ class BookSearch {
 		this.bookService = bookService
 		this.bookCardList = bookCardList
 		this.statusElement = document.querySelector('.book-status')
+		this.authorFilter = document.querySelector('.author-filter')
+		this.currentBooks = []
 		this.requestId = 0
 
 		this.debouncedSearch = debounce((query, requestId) => {
@@ -14,18 +16,63 @@ class BookSearch {
 	}
 
 	init() {
-		if (!this.input) {
-			console.error('BookSearch: input .search__input was not found')
-			return
-		}
-
-		if (!this.statusElement) {
-			console.error('BookSearch: element .book-status was not found')
+		if (this.authorFilter) {
+			this.authorFilter.addEventListener('change', () => {
+				this.applyAuthorFilter()
+			})
 		}
 
 		this.input.addEventListener('input', () => {
 			this.handleInput()
 		})
+	}
+
+	setBooks(books) {
+		this.currentBooks = books
+		this.updateAuthorOptions()
+		this.applyAuthorFilter()
+	}
+
+	updateAuthorOptions() {
+		if (!this.authorFilter) return
+
+		const selectedAuthor = this.authorFilter.value
+		const authors = [
+			...new Set(
+				this.currentBooks
+					.map(book => book.author)
+					.filter(author => author && author !== 'Unknown author'),
+			),
+		].sort()
+
+		this.authorFilter.replaceChildren()
+
+		const allOption = document.createElement('option')
+		allOption.value = 'all'
+		allOption.textContent = 'All authors'
+		this.authorFilter.append(allOption)
+
+		authors.forEach(author => {
+			const option = document.createElement('option')
+			option.value = author
+			option.textContent = author
+			this.authorFilter.append(option)
+		})
+
+		this.authorFilter.value = authors.includes(selectedAuthor)
+			? selectedAuthor
+			: 'all'
+	}
+
+	applyAuthorFilter() {
+		const selectedAuthor = this.authorFilter?.value ?? 'all'
+
+		const books =
+			selectedAuthor === 'all'
+				? this.currentBooks
+				: this.currentBooks.filter(book => book.author === selectedAuthor)
+
+		this.bookCardList.render(books)
 	}
 
 	showStatus(state) {
@@ -58,19 +105,24 @@ class BookSearch {
 
 			if (requestId !== this.requestId) return
 
-			this.bookCardList.render(books)
+			this.setBooks(books)
 			this.showStatus(books.length === 0 ? 'empty' : 'success')
 		} catch (error) {
 			if (requestId !== this.requestId) return
 
-			console.error('Failed to load default books:', error)
 			this.bookCardList.render([])
+			this.currentBooks = []
+			this.updateAuthorOptions()
 			this.showStatus('error')
 		}
 	}
 
 	handleInput() {
 		this.debouncedSearch.cancel()
+
+		if (this.authorFilter) {
+			this.authorFilter.value = 'all'
+		}
 
 		const query = this.input.value.trim()
 		const requestId = ++this.requestId
@@ -96,13 +148,15 @@ class BookSearch {
 
 			if (requestId !== this.requestId) return
 
-			this.bookCardList.render(books)
+			this.setBooks(books)
 			this.showStatus(books.length === 0 ? 'empty' : 'success')
 		} catch (error) {
 			if (requestId !== this.requestId) return
 
 			console.error('Failed to search books:', error)
 			this.bookCardList.render([])
+			this.currentBooks = []
+			this.updateAuthorOptions()
 			this.showStatus('error')
 		}
 	}

@@ -8,11 +8,6 @@ class BookCardList {
 	}
 
 	render(books) {
-		if (!this.container) {
-			console.error('BookCardList: container .book-grid was not found')
-			return
-		}
-
 		this.container.replaceChildren()
 
 		books.forEach(book => {

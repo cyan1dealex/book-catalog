@@ -12,13 +12,6 @@ class FavoritesPanel {
 	}
 
 	init() {
-		if (!this.toggleButton || !this.closeButton || !this.overlay) {
-			console.error(
-				'FavoritesPanel: check .favorites-toggle, .favorites-panel__close, and .overlay in index.html',
-			)
-			return
-		}
-
 		this.toggleButton.addEventListener('click', () => this.open())
 		this.closeButton.addEventListener('click', () => this.close())
 		this.overlay.addEventListener('click', () => this.close())

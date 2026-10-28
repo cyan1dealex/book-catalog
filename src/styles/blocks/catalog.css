@@ -89,6 +89,33 @@
 	background: var(--color-white);
 }
 
+.author-filter {
+	padding: 10px 36px 10px 14px;
+	border: 1px solid var(--color-border);
+	border-radius: 8px;
+	background-color: var(--color-white);
+	color: var(--color-text);
+	font: inherit;
+	font-size: 14px;
+	cursor: pointer;
+	outline: none;
+	transition: border-color 0.2s ease;
+}
+
+.author-filter:hover {
+	border-color: var(--color-primary);
+}
+
+.author-filter:focus-visible {
+	border-color: var(--color-primary);
+	outline: none;
+}
+
+.author-filter option {
+	background-color: var(--color-white);
+	color: var(--color-text);
+}
+
 .book-grid {
 	display: flex;
 	gap: 12px;

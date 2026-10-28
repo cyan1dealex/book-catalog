@@ -44,17 +44,10 @@
 
 				<div class="catalog__toolbar">
 					<div class="filters">
-						<button class="filter filter--active" type="button">
-							All books
-						</button>
-						<button class="filter" type="button">Favorites</button>
+						<select class="author-filter">
+							<option value="all">All authors</option>
+						</select>
 					</div>
-
-					<select class="sort">
-						<option value="relevance">Relevance</option>
-						<option value="title">Title</option>
-						<option value="author">Author</option>
-					</select>
 				</div>
 
 				<div class="book-status" role="status" aria-live="polite" hidden></div>
