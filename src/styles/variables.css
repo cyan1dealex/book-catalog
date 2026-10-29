@@ -1,5 +1,5 @@
 :root {
-	--color-bg: #eceae5;
+	--color-bg: #f8f7f3;
 	--color-white: #fcfaf7;
 	--color-text: #252525;
 	--color-muted: #777777;
@@ -11,4 +11,14 @@
 
 	--container-width: 1100px;
 	--radius: 10px;
+}
+
+:root[data-theme='dark'] {
+	--color-bg: #181a18;
+	--color-white: #242824;
+	--color-text: #f0f0eb;
+	--color-muted: #b0b5ad;
+	--color-border: #3b423b;
+	--color-primary: #83b994;
+	--color-primary-hover: #a0d0ae;
 }
